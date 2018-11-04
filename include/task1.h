@@ -28,18 +28,29 @@ void merge(T mas[], size_t left_s, size_t right_s) {
         else {
             temp[new_pos++] = mas[right_pos++];
         }
-        if (left_pos == left_s){
-            copy(&mas[right_pos], &mas[right_s + left_s], &temp[new_pos]);
+        if (left_pos == left_s) {
+            //copy(&mas[right_pos], &mas[right_s + left_s], &temp[new_pos]);
+            for (size_t i = right_pos; i < right_s + left_s; i++) {
+                temp[new_pos] = mas[i];
+                new_pos++;
+            }
             break;
         }
         if (right_pos == left_s + right_s) {
-            copy(&mas[left_pos], &mas[left_s], &temp[new_pos]);
+            //copy(&mas[left_pos], &mas[left_s], &temp[new_pos]);
+            for (size_t i = left_pos; i < left_s; i++) {
+                temp[new_pos] = mas[i];
+                new_pos++;
+            }
             break;
         }
     }
-    copy(&temp[0], &temp[right_s + left_s], mas);
-    
-	delete[] temp;
+    //copy(&temp[0], &temp[right_s + left_s], mas);
+    for (size_t i = 0; i < left_s + right_s; i++) {
+        mas[i] = temp[i];
+        new_pos++;
+    }
+    delete[] temp;
 }
 
 
