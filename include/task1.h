@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstring>
+#include <iterator>
 
 using namespace std;
 
