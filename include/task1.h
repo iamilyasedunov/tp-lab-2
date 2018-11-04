@@ -29,7 +29,7 @@ void merge(T mas[], size_t left_s, size_t right_s) {
             temp[new_pos++] = mas[right_pos++];
         }
         if (left_pos == left_s) {
-            //copy(&mas[right_pos], &mas[right_s + left_s], &temp[new_pos]);
+            //copy from [&mas[right_pos], &mas[right_s + left_s] ] to [&temp[new_pos], &temp[new_pos] ];
             for (size_t i = right_pos; i < right_s + left_s; i++) {
                 temp[new_pos] = mas[i];
                 new_pos++;
@@ -37,7 +37,7 @@ void merge(T mas[], size_t left_s, size_t right_s) {
             break;
         }
         if (right_pos == left_s + right_s) {
-            //copy(&mas[left_pos], &mas[left_s], &temp[new_pos]);
+            //copy from [ &mas[left_pos], &mas[left_s] ] to [&temp[new_pos], &temp[left_s + right_s]];
             for (size_t i = left_pos; i < left_s; i++) {
                 temp[new_pos] = mas[i];
                 new_pos++;
@@ -45,7 +45,7 @@ void merge(T mas[], size_t left_s, size_t right_s) {
             break;
         }
     }
-    //copy(&temp[0], &temp[right_s + left_s], mas);
+    //copy from [&temp[0], &temp[right_s + left_s] ] to mas);
     for (size_t i = 0; i < left_s + right_s; i++) {
         mas[i] = temp[i];
         new_pos++;
@@ -63,7 +63,7 @@ void msort(T mas[], size_t s){
         size_t const left_s = s / 2;
         size_t const right_s = s - left_s;
 
-        msort(&mas[0], left_s);
-        msort(&mas[left_s], right_s);
-        merge(&mas[0], left_s, right_s);
+        msort(&mas[0], left_s); //sorting of the left half
+        msort(&mas[left_s], right_s); //sorting of the right half
+        merge(&mas[0], left_s, right_s); //merging
 }
