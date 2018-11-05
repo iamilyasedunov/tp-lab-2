@@ -1,6 +1,6 @@
 #include "task3.h"
 
-template<class T>
+template<typename T>
 T change(T val)
 {
     return val + 6;
