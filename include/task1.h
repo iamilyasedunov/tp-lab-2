@@ -6,19 +6,19 @@
 using namespace std;
 
 template <typename T>
-bool cmp(T &x, T &y){
+bool cmp(T &x, T &y){   //function of comparing for numbers
     return x<y;
 }
 
 bool cmp(char* &x, char* &y){
-    return strlen(x)<strlen(y);
+    return strlen(x)<strlen(y);     //function of comparing for strings
 }
 
 template <typename T>
 void merge(T mas[], size_t left_s, size_t right_s) {
-    size_t left_pos = 0, right_pos = left_s, new_pos = 0;
+    size_t left_pos = 0, right_pos = left_s, new_pos = 0;   
 
-    T* temp = new T[right_s + left_s];
+    T* temp = new T[right_s + left_s];      //temp wil sorted
 
     while (left_pos < left_s || right_pos < right_s + left_s) {
 
@@ -29,7 +29,7 @@ void merge(T mas[], size_t left_s, size_t right_s) {
             temp[new_pos++] = mas[right_pos++];
         }
         if (left_pos == left_s) {
-            //copy from [&mas[right_pos], &mas[right_s + left_s] ] to [&temp[new_pos], &temp[new_pos] ];
+            //copy from [&mas[right_pos], &mas[right_s + left_s] ] to [&temp[new_pos], &temp[left_s + right_s] ];
             for (size_t i = right_pos; i < right_s + left_s; i++) {
                 temp[new_pos] = mas[i];
                 new_pos++;
